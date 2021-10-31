@@ -22,27 +22,24 @@ public class test {
 	    }
 	    public static Integer findGroups(List<Integer> firstPoints, List<Integer> secondPoints) {
 	   	ArrayList<Integer> res = new ArrayList<Integer>(); 
-	   
-	   	ArrayList<ArrayList<Integer> > tab = new ArrayList<ArrayList<Integer> >();
-	    ArrayList<ArrayList<Integer> > tab2 = new ArrayList<ArrayList<Integer> >();
+	     	ArrayList<ArrayList<Integer> > tab = new ArrayList<ArrayList<Integer> >();
+	   	ArrayList<ArrayList<Integer> > tab2 = new ArrayList<ArrayList<Integer> >();
 		   
 	   	for(int i= 0 ;i<10500;i++)
 	   	    {
 	            ArrayList<Integer> tmp = new ArrayList<Integer>();
-	   	        tab.add(tmp);
-	   	     ArrayList<Integer> tmp2 = new ArrayList<Integer>();
-	   	        tab2.add(tmp2);
+		    ArrayList<Integer> tmp2 = new ArrayList<Integer>();
+	   	    tab.add(tmp);
+	   	    tab2.add(tmp2);
 	   	    }
-	    int n = firstPoints.size();
-	       for(int i=0; i<n/2;i++)
-	       {
-	           
+	        int n = firstPoints.size();
+	        for(int i=0; i<n/2;i++)
+	       	   {
 	           res.add(-1);
 	           res.add(-1);
 	           tab.get(secondPoints.get(2*i)*101+secondPoints.get(2*i+1)).add(i);
 	           tab2.get(firstPoints.get(2*i)*101 +firstPoints.get(2*i+1)).add(i);
-	           
-	       } 
+	           } 
 	       
 	        
 	       //same points
@@ -55,10 +52,10 @@ public class test {
 	      
 	    	   for(int i=0; i<n/2;i++)
 		       {
-		          int xi = firstPoints.get(2*i);
-		          int yi = firstPoints.get(2*i+1); 
-		          for(int j=0; j<n/2;j++)
-		       {
+		       int xi = firstPoints.get(2*i);
+		       int yi = firstPoints.get(2*i+1); 
+		       for(int j=0; j<n/2;j++)
+		       	  {
 		          int xj = secondPoints.get(2*j);
 		          int yj = secondPoints.get(2*j+1);
 		          if(xi == xj && yi == yj)
@@ -72,49 +69,45 @@ public class test {
 		               
 		               
 		          }
-		       }
+		          }
 		       }
 		        if(cnt <5)
 		        {	
 		            k=1;
 		            for(int i=0; i<n;i++)
-		       {
-		           
-		           res.set(i,-1);
-		       }
+		            {
+		             res.set(i,-1);
+		            }
 		        }else
-		        	k++;
+		           k++;
 		        int repeat = 1;
 		        ArrayList<Integer> lst = new ArrayList<Integer>();
 		        for(int i=0; i<n/2;i++)
-		        	lst.add(i);
-			     while(repeat<3) {
-			    	Collections.shuffle(lst);
-		        int mx = 0;
+		             lst.add(i);
+		        while(repeat<3) 
+			   {
+			   Collections.shuffle(lst);
+		           int mx = 0;
 		           int indj = -1;
 		           int indi = -1;
 		           ArrayList<Integer> hold = new ArrayList<Integer>();
 		           int turn = 0;
-		    	  for(int z = 0; z < n/2; z +=1)
+		    	   for(int z = 0; z < n/2; z +=1)
 			       {
 		    		  int i = 2*lst.get(z);
-		    		  
-			            if(res.get(i/2) != -1)
+		    		  if(res.get(i/2) != -1)
 			                continue;
-			            if(turn==0)
-				           { 
-				        	   //System.out.println("  "+indi);
-				        	   mx = 0;
-				           
-				           }
+			          if(turn==0)
+				  {
+				  //System.out.println("  "+indi);
+				  mx = 0;
+				  }
 			           int x1 = firstPoints.get(i);
 			           int y1 = firstPoints.get(i+1);
-			           
-			           
 			           for(int rt = 0; rt <4; rt++)
-			               {
+			             {
 			             for(int j = 0; j<n ; j+=2)
-			           {
+			               {
 			               if(res.get(n/2 + j/2) != -1)
 			                   continue;
 			               int cur = 0;
