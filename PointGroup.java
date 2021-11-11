@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class test {
-	 public static Integer dist(Integer a, Integer b, Integer c, Integer d)
+	     public static Integer dist(Integer a, Integer b, Integer c, Integer d)
 	    { 
 	        return (a-c)*(a-c)+(b-d)*(b-d);
 	    }  
@@ -71,156 +71,156 @@ public class test {
 		          }
 		          }
 		       }
-		        if(cnt <5)
-		        {	
-		            k=1;
-		            for(int i=0; i<n;i++)
-		            {
-		             res.set(i,-1);
-		            }
-		        }else
-		           k++;
-		        int repeat = 1;
-		        ArrayList<Integer> lst = new ArrayList<Integer>();
-		        for(int i=0; i<n/2;i++)
-		             lst.add(i);
-		        while(repeat<3) 
-			   {
-			   Collections.shuffle(lst);
-		           int mx = 0;
-		           int indj = -1;
-		           int indi = -1;
-		           ArrayList<Integer> hold = new ArrayList<Integer>();
-		           int turn = 0;
-		    	   for(int z = 0; z < n/2; z +=1)
+		if(cnt <5)
+		{	
+		    k=1;
+		    for(int i=0; i<n;i++)
+		    {
+		     res.set(i,-1);
+		    }
+		}else
+		   k++;
+		int repeat = 1;
+		ArrayList<Integer> lst = new ArrayList<Integer>();
+		for(int i=0; i<n/2;i++)
+		     lst.add(i);
+		while(repeat<3) 
+		   {
+		   Collections.shuffle(lst);
+		   int mx = 0;
+		   int indj = -1;
+		   int indi = -1;
+		   ArrayList<Integer> hold = new ArrayList<Integer>();
+		   int turn = 0;
+		   for(int z = 0; z < n/2; z +=1)
+		       {
+			  int i = 2*lst.get(z);
+			  if(res.get(i/2) != -1)
+				continue;
+			  if(turn==0)
+			  {
+			  //System.out.println("  "+indi);
+			  mx = 0;
+			  }
+			   int x1 = firstPoints.get(i);
+			   int y1 = firstPoints.get(i+1);
+			   for(int rt = 0; rt <4; rt++)
+			     {
+			     for(int j = 0; j<n ; j+=2)
 			       {
-		    		  int i = 2*lst.get(z);
-		    		  if(res.get(i/2) != -1)
-			                continue;
-			          if(turn==0)
-				  {
-				  //System.out.println("  "+indi);
-				  mx = 0;
-				  }
-			           int x1 = firstPoints.get(i);
-			           int y1 = firstPoints.get(i+1);
-			           for(int rt = 0; rt <4; rt++)
-			             {
-			             for(int j = 0; j<n ; j+=2)
-			               {
-			               if(res.get(n/2 + j/2) != -1)
-			                   continue;
-			               int cur = 0;
-			               int x2 = secondPoints.get(j);
-			               int y2 = secondPoints.get(j+1);
-			               int dx = x2 - x1;
-			               int dy = y2 - y1;
-			               ArrayList<Integer> temp = new ArrayList<Integer>();
-			               ArrayList<Integer> vis = new ArrayList<Integer>();
-			               ArrayList<Integer> ist = new ArrayList<Integer>();
-			               
-			                 for(int f= 0 ;f<1002;f++)
-			                {
-			                    vis.add(-1);
-			                    // ist.add(0);
-			                }
-			               ArrayList<Integer> co = new ArrayList<Integer>();
-			               ArrayList<Integer> si = new ArrayList<Integer>();
-			               co.add(1);
-			               co.add(0);
-			               co.add(-1); 
-			               co.add(0);
-			               si.add(0);
-			               si.add(1);
-			               si.add(0);
-			               si.add(-1);
-			               
-			                   for(int l = 0; l<n ;l+=2)
-			               {
-			                   if(l!=i && res.get(l/2) == -1)
-			                   {
-			                   int nx = firstPoints.get(l) +dx;
-			                   int ny = firstPoints.get(l+1)+dy;
-			                   if(rt<4)
-			                   {
-			                	   int tx = nx - x2;
-				                   int ty = ny - y2;
-				                   nx = (tx*co.get(rt) - ty*si.get(rt));
-				                   ny = (tx*si.get(rt) + ty*co.get(rt));
-				                   nx += x2;
-				                   ny += y2;
-				                   
-			                   }
-			                   
-			                   if(nx <101 && nx >0 && ny <101 && ny >0 &&tab.get(nx*101+ny).size()>0)
-			                   {
-			                       int it = 0;
-			                       //int p = tab.get(nx*101+ny).get(0);
-			                       int p = tab.get(nx*101+ny).get(rand.nextInt(tab.get(nx*101+ny).size()));
-			                       //System.out.println(tab.get(nx*101+ny).size());
-			                       //int p = tab.get(nx*101+ny).get(0);
-			                      /* if(it < tab.get(nx*101+ny).size())
-			                       	p = tab.get(nx*101+ny).get(it);
-			                      */ 
-			                     /*  int lim = tab.get(nx*101+ny).size();
-			                      if(tab.get(nx*101+ny).size() > 1)
-			                           lim = 1;
-			                       while(it+1 < lim && (res.get(p +n/2) != -1 && vis.get(p)!=-1))
-			                       { 
-			                           it++;
-			                           p = tab.get(nx*101+ny).get(it);
-			                       }*/
-			                       //ist.set(nx*101+ny,it+1);
-			              		   if(res.get(p +n/2) == -1 && vis.get(p)==-1)
-			                       {
-			                            vis.set(p, 1);
-			                           temp.add(l/2);
-			                           temp.add(p);
-			                           cur++;
-			                       }
-			                      
-			                   }
-			                   }
-			                   
-			               }
-			               if(cur > mx)
-			               {
-			                   mx = cur;
-			                   indj = j;
-			                   indi = i;
-			                   hold = temp;
-			                   //System.out.println("  "+indi);
-			               }
-			               }
-			               
-			           
-			           }
-			           if(mx>5 -2*repeat && turn ==3-repeat)
-			           {
-			        	  System.out.println("         "+indi+"  "+i+"  "+mx);
-			               res.set(indi/2,k);
-			               res.set(n/2 +indj/2, k);
-			               for(int s = 0; s<hold.size();s+=2)
-			               {
-			                   res.set(hold.get(s),k);
-			                   res.set(hold.get(s+1)+n/2,k);
-			               }
-			               k++;
-			               pris+=hold.size()/2+1;
-			           }
-			        	   turn++;
-			        	 if(turn ==3-repeat+1)
-			        		 turn=0;
-			        	
-			           
-			           
-			           
-			           
-			          
-			           
+			       if(res.get(n/2 + j/2) != -1)
+				   continue;
+			       int cur = 0;
+			       int x2 = secondPoints.get(j);
+			       int y2 = secondPoints.get(j+1);
+			       int dx = x2 - x1;
+			       int dy = y2 - y1;
+			       ArrayList<Integer> temp = new ArrayList<Integer>();
+			       ArrayList<Integer> vis = new ArrayList<Integer>();
+			       ArrayList<Integer> ist = new ArrayList<Integer>();
+
+				 for(int f= 0 ;f<1002;f++)
+				{
+				    vis.add(-1);
+				    // ist.add(0);
+				}
+			       ArrayList<Integer> co = new ArrayList<Integer>();
+			       ArrayList<Integer> si = new ArrayList<Integer>();
+			       co.add(1);
+			       co.add(0);
+			       co.add(-1); 
+			       co.add(0);
+			       si.add(0);
+			       si.add(1);
+			       si.add(0);
+			       si.add(-1);
+
+				   for(int l = 0; l<n ;l+=2)
+			       {
+				   if(l!=i && res.get(l/2) == -1)
+				   {
+				   int nx = firstPoints.get(l) +dx;
+				   int ny = firstPoints.get(l+1)+dy;
+				   if(rt<4)
+				   {
+					   int tx = nx - x2;
+					   int ty = ny - y2;
+					   nx = (tx*co.get(rt) - ty*si.get(rt));
+					   ny = (tx*si.get(rt) + ty*co.get(rt));
+					   nx += x2;
+					   ny += y2;
+
+				   }
+
+				   if(nx <101 && nx >0 && ny <101 && ny >0 &&tab.get(nx*101+ny).size()>0)
+				   {
+				       int it = 0;
+				       //int p = tab.get(nx*101+ny).get(0);
+				       int p = tab.get(nx*101+ny).get(rand.nextInt(tab.get(nx*101+ny).size()));
+				       //System.out.println(tab.get(nx*101+ny).size());
+				       //int p = tab.get(nx*101+ny).get(0);
+				      /* if(it < tab.get(nx*101+ny).size())
+					p = tab.get(nx*101+ny).get(it);
+				      */ 
+				     /*  int lim = tab.get(nx*101+ny).size();
+				      if(tab.get(nx*101+ny).size() > 1)
+					   lim = 1;
+				       while(it+1 < lim && (res.get(p +n/2) != -1 && vis.get(p)!=-1))
+				       { 
+					   it++;
+					   p = tab.get(nx*101+ny).get(it);
+				       }*/
+				       //ist.set(nx*101+ny,it+1);
+					   if(res.get(p +n/2) == -1 && vis.get(p)==-1)
+				       {
+					    vis.set(p, 1);
+					   temp.add(l/2);
+					   temp.add(p);
+					   cur++;
+				       }
+
+				   }
+				   }
+
 			       }
-		    	  repeat++;
-	       }
+			       if(cur > mx)
+			       {
+				   mx = cur;
+				   indj = j;
+				   indi = i;
+				   hold = temp;
+				   //System.out.println("  "+indi);
+			       }
+			       }
+
+
+			   }
+			   if(mx>5 -2*repeat && turn ==3-repeat)
+			   {
+				  System.out.println("         "+indi+"  "+i+"  "+mx);
+			       res.set(indi/2,k);
+			       res.set(n/2 +indj/2, k);
+			       for(int s = 0; s<hold.size();s+=2)
+			       {
+				   res.set(hold.get(s),k);
+				   res.set(hold.get(s+1)+n/2,k);
+			       }
+			       k++;
+			       pris+=hold.size()/2+1;
+			   }
+				   turn++;
+				 if(turn ==3-repeat+1)
+					 turn=0;
+
+
+
+
+
+
+
+		       }
+	   repeat++;
+	}
 	        
 	    	  
 		         
